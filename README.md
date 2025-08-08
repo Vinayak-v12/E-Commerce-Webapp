@@ -38,6 +38,3 @@ A Java-based E-Commerce Web Application built using Spring Boot, Thymeleaf, and 
 
 
 
-
-   git clone https://github.com/your-username/ecommerce-app.git
-   cd ecommerce-app

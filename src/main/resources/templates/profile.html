@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <div id="container" th:if="${username != null}">
+        <p><strong>Username:</strong> <span th:text="${username}"></span></p>
+        
+        <p><strong>Roles:</strong><ul><li th:each="role : ${roles}" th:text="${role.getAuthority()}"></li></ul></p>  
+       
+    </div>
+
+    <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+</body>
+</html>

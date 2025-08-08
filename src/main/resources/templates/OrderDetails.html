@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f06292;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .no-orders {
+            margin-top: 20px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h2>My Orders</h2>
+
+    <div th:if="${#lists.isEmpty(Orders)}">
+        <p class="no-orders">You have not placed any orders yet.</p>
+    </div>
+
+    <table th:if="${not #lists.isEmpty(Orders)}">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Order Date</th>
+                <th>Delivery Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${Orders}">
+                <td th:text="${order.product.name}">Product Name</td>
+                <td th:text="${#temporals.format(order.orderDate, 'dd MMM yyyy')}">Order Date</td>
+                <td th:text="${#temporals.format(order.deliveryDate, 'dd MMM yyyy')}">Delivery Date</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

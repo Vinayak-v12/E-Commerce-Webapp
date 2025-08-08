@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div id="logo_container"><a href="https://www.meesho.com/"><img src="https://www.meesho.com/assets/svgicons/meeshoLogo.svg"></a></div>
+            <div id="search_bar"><form id="f1" action="/findProduct" method="post"><input  type="search" name="name" placeholder=" Search By Product      "><div><button id="searchbtn" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+</svg></button></div></form></div>
+            <div class="one"><svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+              </svg><h5>Download app</h5></div>
+            <div class="v1"></div>
+            <div> <h5>Become a supplier</h5></div>
+            <div class="v1"></div>
+            <div><h5>Investor relations</h5></div>
+            <div class="v1"></div>
+            <div class="one"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+              </svg><h5><a href="/profile">profile</a></h5></div>
+            <div class="v1"></div>
+            <div class="one"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+              </svg><h5><a href="/My Orders">My Orders</a></h5></div>
+            
+        </nav>
+        <hr>
+        <div id="nav2">
+          <h5>women ethnic</h5>
+          <h5>women western</h5>
+          <h5>mens</h5>
+          <h5>kids</h5>
+          <h5>home & kitchen</h5>
+          <h5>beaauty & health</h5>
+          <h5>jwellery & accesories</h5>
+          <h5>bags & footwear</h5>
+          <h5>electornics</h5>
+          <h5>sports & fitness</h5>
+          <h5>car & motorbike</h5>
+        </div>
+    </header>
+    <div id="box1">
+      <section class="i">
+        <img display="block" width="100%" src="https://images.meesho.com/images/marketing/1744783895378.webp">
+          </section>
+        <div class="overlay_text">
+          <div >Smart shopping</div>
+          <div> Trusted by millions</div>
+          <div> shop Now</div>
+        </div>
+      
+    </div>
+    <div class="product-container">
+    <div th:each="product : ${Products}" class="product-card">
+        <img th:src="${product.image_url}" alt="Product" width="200" height="200" />
+        <h3 th:text="${product.name}"></h3>
+        <p th:text="${product.description}"></p>
+        <p th:text="'₹' + ${product.price}"></p>
+        <form th:action="@{'/buy/' + ${product.id}}" method="post">
+            <button type="submit">Buy</button>
+        </form>
+    </div>
+</div>
+</body>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>Company</h4>
+      <p>About Us</p>
+      <p>Careers</p>
+      <p>Contact</p>
+    </div>
+    <div class="footer-section">
+      <h4>Help</h4>
+      <a th:href="@{/logout}">Logout</a>
+      <p>FAQs</p>
+      <p>Order Tracking</p>
+    </div>
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <p>Facebook</p>
+      <p>Instagram</p>
+      <p>Twitter</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+   <a  th:href="@{/logout}">Logout</a>
+    <h4>2025 Meesho Clone. All rights reserved.</h4> 
+  </div>
+</footer>
+
+</html>
+    
+
+</html>
